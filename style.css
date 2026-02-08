@@ -1,0 +1,335 @@
+/* RESET + body */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #0f0f0f;
+    color: #ffffff;
+}
+
+/* HEADER general */
+header {
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0,0,0,0.8); /* header vizibil pe toate paginile */
+    position: relative;
+    z-index: 20;
+}
+
+/* header DOAR pe homepage - transparent peste slideshow */
+.home header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: none;
+}
+
+/* NAV links */
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    opacity: 0.7;
+}
+
+
+/* GALLERY */
+.gallery {
+    padding: 40px;
+    column-count: 3;
+    column-gap: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    display: block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
+}
+
+@media (max-width: 900px) {
+    .gallery {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 500px) {
+    .gallery {
+        column-count: 1;
+    }
+}
+
+/* LIGHTBOX */
+#lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: background 0.4s ease, opacity 0.4s ease;
+}
+
+#lightbox.active {
+    background: rgba(0, 0, 0, 0.95);
+    opacity: 1;
+    pointer-events: all;
+}
+
+#lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    transform: scale(0.92);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+#lightbox.active img {
+    transform: scale(1);
+    opacity: 1;
+}
+
+#close {
+    position: absolute;
+    top: 25px;
+    right: 40px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#lightbox.active #close {
+    opacity: 1;
+}
+
+/* HERO SLIDESHOW */
+.hero {
+    position: relative;
+    height: 100vh;  /* fix height fullscreen */
+    width: 100%;
+    overflow: hidden;
+}
+
+/* container slideshow */
+.slideshow {
+    position: absolute;
+    inset: 0;
+}
+
+/* fiecare imagine */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* HERO TEXT */
+.hero-text {
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(0,0,0,0.25);
+}
+
+.hero-text h2 {
+    font-size: 56px;
+    margin-bottom: 10px;
+}
+
+.hero-text p {
+    font-size: 20px;
+    opacity: 0.9;
+}
+
+
+/* ASCUNDE SCROLL DOAR PE HOMEPAGE */
+body.home {
+    overflow: hidden;
+}
+
+
+
+
+
+/* Container pentru About / Contact */
+.about .container,
+.contact .container {
+    max-width: 900px;
+    margin: 100px auto 50px auto; /* spațiu sus și jos */
+    padding: 0 20px;
+    text-align: center;
+}
+
+.about h2,
+.contact h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.about p,
+.contact p,
+.contact ul {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.contact ul {
+    list-style: none;
+    padding: 0;
+}
+
+.contact ul li {
+    margin-bottom: 10px;
+}
+
+.contact a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.contact a:hover {
+    opacity: 0.7;
+}
+
+
+
+
+
+
+
+/* Body ca flex vertical */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* full screen */
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #0f0f0f;
+    color: #ffffff;
+    margin: 0;
+}
+
+/* Header - rămâne sus */
+header {
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0,0,0,0.8);
+    z-index: 20;
+}
+
+.home header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: none;
+}
+
+/* Main content - ocupă spațiul dintre header și foote */
+main.about,
+main.contact {
+    flex: 1;               /* ocupă tot spațiul rămas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Container text */
+.about .container,
+.contact .container {
+    max-width: 900px;
+    text-align: center;
+}
+
+/* Headings */
+.about h2,
+.contact h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+/* Paragraf + lista */
+.about p,
+.contact p,
+.contact ul {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.contact ul {
+    list-style: none;
+    padding: 0;
+}
+
+.contact ul li {
+    margin-bottom: 10px;
+}
+
+.contact a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.contact a:hover {
+    opacity: 0.7;
+}
+
+/* Footer: ascuns pe homepage */
+body.home footer {
+    display: none;
+}
+
+/* Footer vizibil jos pe pagini non-home */
+body:not(.home) footer {
+    display: block;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    opacity: 0.6;
+}
